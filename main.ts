@@ -16,3 +16,6 @@ game.showLongText("DO YOU WANT TO START THE ADVENTURE? PRESS \"A\" TO CONTINUE."
 music.stopAllSounds()
 game.setDialogTextColor(2)
 scene.setBackgroundImage(assets.image`labh`)
+forever(function () {
+	
+})

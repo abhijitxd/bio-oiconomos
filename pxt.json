@@ -1,9 +1,12 @@
 {
-    "name": "BIO-OICONOMOS",
+    "name": "BIO-OICONOMOS - Copy - Copy",
     "description": "",
     "dependencies": {
         "device": "*",
-        "controller": "*"
+        "controller": "*",
+        "multiplayer": "*",
+        "Color Fading": "github:jwunderl/pxt-color#v0.2.2",
+        "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.2"
     },
     "files": [
         "main.blocks",
@@ -13,7 +16,8 @@
         "tilemap.g.jres",
         "tilemap.g.ts",
         "images.g.jres",
-        "images.g.ts"
+        "images.g.ts",
+        "main.py"
     ],
     "testFiles": [
         "test.ts"

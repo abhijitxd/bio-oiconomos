@@ -1,3 +1,26 @@
+@namespace
+class SpriteKind:
+    NPC = SpriteKind.create()
+    time_Machine = SpriteKind.create()
+
+def on_on_overlap(sprite, otherSprite):
+    global Time_Machine
+    Time_Machine = sprites.create(assets.image("""
+            adam baba ki time machine
+        """),
+        SpriteKind.time_Machine)
+    sprites.destroy_all_sprites_of_kind(SpriteKind.NPC)
+    sprites.destroy_all_sprites_of_kind(SpriteKind.time_Machine)
+    music.play(music.melody_playable(music.buzzer),
+        music.PlaybackMode.UNTIL_DONE)
+    music.play(music.melody_playable(music.beam_up),
+        music.PlaybackMode.IN_BACKGROUND)
+    scene.set_background_image(assets.image("""
+        Wormholes
+    """))
+    game.show_long_text("STRAIGHT TO THE FUTURE IN 2050", DialogLayout.BOTTOM)
+sprites.on_overlap(SpriteKind.time_Machine, SpriteKind.player, on_on_overlap)
+
 def on_b_pressed():
     music.play(music.create_sound_effect(WaveShape.SAWTOOTH,
             1406,
@@ -22,20 +45,34 @@ def on_a_pressed():
         music.PlaybackMode.IN_BACKGROUND)
 controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
 
+def on_on_overlap2(sprite2, otherSprite2):
+    MAIN_CHARECTER.set_position(82, 39)
+    game.set_dialog_text_color(2)
+    game.show_long_text("\"HI adventurer, I have a really important task for you!!!",
+        DialogLayout.BOTTOM)
+    MAIN_CHARECTER.set_position(43, 48)
+    game.show_long_text("I have a time machine. You need to go in future to know our world there.   ",
+        DialogLayout.BOTTOM)
+    game.show_long_text("Move left to time travel in the future.",
+        DialogLayout.BOTTOM)
+sprites.on_overlap(SpriteKind.NPC, SpriteKind.player, on_on_overlap2)
+
+MAIN_CHARECTER: Sprite = None
+Time_Machine: Sprite = None
 scene.set_background_image(assets.image("""
     start
 """))
 music.play(music.create_song(hex("""
-        006e000408020206001c00010a006400f401640000040000000000000000000000000000000002480000000400012a08000c00012210001400011d14001800011e18001c00011920002400011e24002800012728002c00031b242a30003400012538003c00041b20252a3c00400002222909010e02026400000403780000040a000301000000640001c80000040100000000640001640000040100000000fa0004af00000401c80000040a00019600000414000501006400140005010000002c0104dc00000401fa0000040a0001c8000004140005d0076400140005d0070000c800029001f40105c201f4010a0005900114001400039001000005c201f4010500058403050032000584030000fa00049001000005c201f4010500058403c80032000584030500640005840300009001049001000005c201f4010500058403c80064000584030500c8000584030000f40105ac0d000404a00f00000a0004ac0d2003010004a00f0000280004ac0d9001010004a00f0000280002d00700040408070f0064000408070000c80003c800c8000e7d00c80019000e64000f0032000e78000000fa00032c01c8000ee100c80019000ec8000f0032000edc000000fa0003f401c8000ea901c80019000e90010f0032000ea4010000fa0001c8000004014b000000c800012c01000401c8000000c8000190010004012c010000c80002c800000404c8000f0064000496000000c80002c2010004045e010f006400042c010000640002c409000404c4096400960004f6090000f40102b80b000404b80b64002c0104f40b0000f401022003000004200300040a000420030000ea01029001000004900100040a000490010000900102d007000410d0076400960010d0070000c8002b000000010001070800090001071000110001041400150002060818001900010a1c001d000108200021000109
+        0078000408040200001c00010a006400f401640000040000000000000000000000000005000004060014001800011e06001c00010a006400f401640000040000000000000000000000000000000002740000000400012a0400080001220c001000021e2914001800012418001c00012a1c00200002192524002800021e242c003000021e2934003800021e273c004000021e2940004400012448004c00021e275000540002192758005c0001205c006000012a60006400012468006c000122700074000119
     """)),
     music.PlaybackMode.LOOPING_IN_BACKGROUND)
 game.set_dialog_text_color(9)
 game.splash("BIO OICONOMOS")
 game.splash("BY HYPER CODERS ")
 game.set_dialog_text_color(6)
-game.show_long_text("This game is made to spread awareness about bio diversity.     Press A to continue",
+game.show_long_text("This game is made to spread awareness about Bio Diversity and our Enviroment.     Press A to continue.",
     DialogLayout.CENTER)
-game.show_long_text("USE ARROW KEYS ↑↓→← TO MOVE.      USE \"A\"and \"B\" TO INTERACT WITH OBJECTS",
+game.show_long_text("USE ARROW KEYS TO MOVE.      USE \"A\"and \"B\" TO INTERACT WITH OBJECTS.",
     DialogLayout.CENTER)
 game.show_long_text("DO YOU WANT TO START THE ADVENTURE? PRESS \"A\" TO CONTINUE.",
     DialogLayout.FULL)
@@ -44,6 +81,15 @@ game.set_dialog_text_color(2)
 scene.set_background_image(assets.image("""
     labh
 """))
+Time_Machine = sprites.create(assets.image("""
+        adam baba ki time machine
+    """),
+    SpriteKind.time_Machine)
+Time_Machine.set_position(18, 53)
+SCIENTIST = sprites.create(assets.image("""
+    Scientistfi
+"""), SpriteKind.NPC)
+SCIENTIST.y = 32
 MAIN_CHARECTER = sprites.create(img("""
         . . . . f f f f . . . . . 
             . . f f f f f f f f . . . 
